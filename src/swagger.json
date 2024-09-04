@@ -1,0 +1,121 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Employee API",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/api/employees": {
+        "get": {
+          "summary": "Get all employees",
+          "responses": {
+            "200": {
+              "description": "A list of employees",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Employee"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Create a new employee",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employee"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Employee created"
+            }
+          }
+        }
+      },
+      "/api/employees/{id}": {
+        "put": {
+          "summary": "Update an employee",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employee"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Employee updated"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete an employee",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Employee deleted"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Employee": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "firstName": {
+              "type": "string"
+            },
+            "lastName": {
+              "type": "string"
+            },
+            "position": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+  
